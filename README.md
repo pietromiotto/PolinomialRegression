@@ -1,18 +1,17 @@
 ---
 author:
 - |
-  Student: PIETRO MIOTTO\
+PIETRO MIOTTO\
   Student's email: miottpi@usi.ch
 date: 22/10/2023
-title: Assignment 1
 ---
 
-# Polynomial regression {#polynomial-regression .unnumbered}
+# Polynomial regression 
 
 We are given the following problem, which aims to build and train a Deep
 Learning Model for regressing a polynomial.
 
-## The Problem {#the-problem .unnumbered}
+## The Problem 
 
 Let $z \in \mathbb{R}$ and consider the polynomial
 $$p(z) = \frac{z^4}{100} - z^3 + z^2 - 10z = \sum_{k=1}^{4} z^k w_k$$
@@ -31,7 +30,7 @@ $$D' := \{(x_i, y_i)\}_{i=1}^N \quad x_i = [z_i, z_i^2, z_i^3, z_i^4]^T$$
 The task of this assignment is to perform polynomial regression using
 gradient descent with PyTorch, even if a closed-form solution exists.
 
-## Questions {#questions .unnumbered}
+## Questions 
 
 1.  Define a function `plot_polynomial(coeffs, z_range, color=’b’)`
     Where `coeffs` is a `np.array` containing
@@ -120,7 +119,7 @@ gradient descent with PyTorch, even if a closed-form solution exists.
     the code; keep the original training and this new one as two
     separate parts.
 
-# Report {#report .unnumbered}
+# Report 
 
 1.  **Line of code: 15-37**\
     Here, I define a function called `plot_polynomial` that takes as an
