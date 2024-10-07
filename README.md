@@ -1,10 +1,4 @@
----
-author:
-- |
-PIETRO MIOTTO\
-  Student's email: miottpi@usi.ch
-date: 22/10/2023
----
+
 
 # Polynomial regression 
 
@@ -455,49 +449,49 @@ gradient descent with PyTorch, even if a closed-form solution exists.
     # Images {#images .unnumbered}
 
     ![Plot of the Polynomial Function on interval
-    $[-3:3]$](images/images/fig1.jpg){#fig:PLOT1 width="75%"}
+    $[-3:3]$](images/fig1.jpg){#fig:PLOT1 width="75%"}
 
     ![Plot of generated training data and polynomial
-    function](images/images/Visual1.png){#fig:PLOT2Training width="75%"}
+    function](images/Visual1.png){#fig:PLOT2Training width="75%"}
 
     ![Plot of generated evaluation data and polynomial
-    function](images/images/visual2.png){#fig:PLOT2Eval width="75%"}
+    function](images/visual2.png){#fig:PLOT2Eval width="75%"}
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500`](images/images/losses1.png){#fig:LOSS1
+    `num_samples=500`](images/losses1.png){#fig:LOSS1
     width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=500` and evaluation
     dataset with `num_samples=500`
-    ](images/images/originalEstimated1.png){#fig:POL2 width="75%"}
+    ](images/originalEstimated1.png){#fig:POL2 width="75%"}
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=500` and evaluation
     dataset with
-    `num_samples=500`](images/images/param1.png){#fig:PARAM1
+    `num_samples=500`](images/param1.png){#fig:PARAM1
     width="75%"}
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=10` and evaluation dataset with
-    `num_samples=500`](images/images/Loss2.png){#fig:LOSS2 width="75%"}
+    `num_samples=500`](images/Loss2.png){#fig:LOSS2 width="75%"}
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=10` and evaluation
     dataset with
-    `num_samples=500`](images/images/bouncing.png){#fig:PARAM2
+    `num_samples=500`](images/bouncing.png){#fig:PARAM2
     width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=10` and evaluation
-    dataset with `num_samples=500`](images/images/PLOT3.png){#fig:PLOT3
+    dataset with `num_samples=500`](images/PLOT3.png){#fig:PLOT3
     width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For polynomial regression performed with DataLoader,
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500` ](images/images/PLOT_final.png){#fig:PLOT4
+    `num_samples=500` ](images/PLOT_final.png){#fig:PLOT4
     width="75%"}
 
     ![Plot of parameters update at each step and original parameter
