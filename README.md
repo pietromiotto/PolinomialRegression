@@ -1,6 +1,126 @@
+---
+author:
+- |
+  Student: PIETRO MIOTTO\
+  Student's email: miottpi@usi.ch
+date: 22/10/2023
+title: Assignment 1
+---
+
 # Polynomial regression {#polynomial-regression .unnumbered}
 
-Write answers to questions here. Please, keep the original enumeration.
+We are given the following problem, which aims to build and train a Deep
+Learning Model for regressing a polynomial.
+
+## The Problem {#the-problem .unnumbered}
+
+Let $z \in \mathbb{R}$ and consider the polynomial
+$$p(z) = \frac{z^4}{100} - z^3 + z^2 - 10z = \sum_{k=1}^{4} z^k w_k$$
+where $w = [w_1, w_2, w_3, w_4]^T = [-10, 1, -1, \frac{1}{100}]^T$. This
+polynomial can also be expressed as the dot product of two vectors,
+namely $$p(z) = w^T x \quad x = [z, z^2, z^3, z^4]^T$$ Consider an
+independent and identically distributed (i.i.d.) dataset
+$D = \{(z_i, y_i)\}_{i=1}^N$, where $y_i = p(z_i) + \epsilon_i$, and
+each $\epsilon_i$ is drawn from a normal distribution with mean zero and
+standard deviation $\sigma$.
+
+Now, assuming that the vector $w$ is unknown, linear regression could
+estimate it using the dot-product form presented in Equation 2. To
+achieve this, we can move to another dataset
+$$D' := \{(x_i, y_i)\}_{i=1}^N \quad x_i = [z_i, z_i^2, z_i^3, z_i^4]^T$$
+The task of this assignment is to perform polynomial regression using
+gradient descent with PyTorch, even if a closed-form solution exists.
+
+## Questions {#questions .unnumbered}
+
+1.  Define a function `plot_polynomial(coeffs, z_range, color=’b’)`
+    Where `coeffs` is a `np.array` containing
+    $[w_0, w_1, w_2, w_3, w_4]^T$ ($w_0$ in this case is equal to 0),
+    `z_range` is the interval $[z_{\text{min}}, z_{\text{max}}]$ of the
+    $z$ variable; `color` represents a color. Use the function to plot
+    the polynomial. Report and comment on the plot.
+
+2.  Write a function
+    `create_dataset(coeffs, z_range, sample_size, sigma, seed=42)` that
+    generates the dataset $D'$. Here, `coeffs` is a `np.array`
+    containing $[w_0, w_1, w_2, w_3, w_4]^T$, `z_range` is the interval
+    $[z_{\text{min}}, z_{\text{max}}]$ of the $z$ variable;
+    `sample_size` is the dimension of the sample; $\sigma$ is the
+    standard deviation of the normal distribution from which
+    $\epsilon_i$ are sampled; `seed` is the seed for the random
+    procedure.
+
+3.  Use the code of the previous point to generate data with the
+    following parameters:
+
+    -   Each $z_i$ should be in the interval $[-3, 3]$
+
+    -   $\sigma = 0.5$
+
+    -   Use a sample size of 500 for training data and a seed of 0
+
+    -   Use a sample size of 500 for evaluation data and a seed of 1
+
+4.  Define a function `visualize_data(X, y, coeffs, z_range, title="")`
+    that plots the polynomial $p(z)$ and the generated data (train and
+    evaluation), where $X, y$ are as returned from the function
+    `create_dataset`, `coeffs` are the coefficients of the polynomial,
+    `z_range` is the interval $[z_{\text{min}}, z_{\text{max}}]$ of the
+    $z$ variable, and `title` may be helpful to distinguish between the
+    training and the evaluation plots. Provide two plots containing both
+    the true polynomial; in one, add a scatter plot with the training
+    data, and in the other a scatter plot with the evaluation data. Use
+    the function to visualize the data. Report and comment on the plots.
+
+5.  Perform polynomial regression on $D$ using linear regression on $D'$
+    and report some comments on the training procedure. Consider your
+    training procedure good when the training loss is less than 0.5.
+    This works in my code with a number of steps equal to 3000. In
+    particular, explain:
+
+    -   How you preprocessed the data.
+
+    -   Which learning rate you used, and why. What happens if the
+        learning rate is too small; what happens if the learning rate is
+        too high, and why.
+
+    -   If bias should be set as `True` or `False` in `torch.nn.Linear`
+        and why.
+
+    Use the data you generated at point 3.
+
+6.  Plot the training and evaluation loss as functions of the iterations
+    and report them in the same plot. If you use both steps and epochs,
+    you can choose either of the two, as long as it is clear from the
+    plot and the plot reports what we expect---namely, that the loss
+    functions decrease.
+
+7.  Plot the polynomial you obtained with your estimated coefficient as
+    well as the original one in the same plot.
+
+8.  Plot the value of the parameters at each iteration as well as the
+    true value.
+
+9.  Re-train the model with the following parameters:
+
+    -   Each $z_i$ should be in the interval $[-3, 3]$
+
+    -   $\sigma = 0.5$
+
+    -   Use a sample size of 10 for training data and a seed of 0
+
+    -   Use a sample size of 500 for evaluation data and a seed of 1
+
+    -   Keep the learning rate you chose at the previous point.
+
+    Report: A plot with both the training and evaluation loss as
+    functions of the iterations in the same plot, and the polynomial you
+    got with your estimated coefficient as well as the original one in
+    the same plot. Comment on what is going on. Note: Do not overwrite
+    the code; keep the original training and this new one as two
+    separate parts.
+
+# Report {#report .unnumbered}
 
 1.  **Line of code: 15-37**\
     Here, I define a function called `plot_polynomial` that takes as an
@@ -301,86 +421,87 @@ Write answers to questions here. Please, keep the original enumeration.
         comparison to the original one. It passes through $0$ because of
         the coefficient for $x^0$, but then it behaves exponentially.
 
-10. I did not answer to this question.
+    <!-- -->
 
-11. **Line of Code: 288-359** I also tried to perform exercise 5 by
-    iterating on batches. Since it wasn't requested I don't describe
-    this in detail. The code is basically the same except that all the
-    optimization and backpropagation are performed inside the for loop
-    that iterates on data batches, while the set of the model in
-    `train()` and `eval()` mode is done outside. Also, note that at each
-    iteration of the batch loop, datapoints and labels of that batch are
-    saved in the device. I kept the same learning rate and I choose $16$
-    as number of batches since it was the one that, with this learning
-    rate, gave me the best result in terms of steps taken. Also, for
-    most of the cases, a batch size between $[8;64]$ is suggested.
-    Performing this linear regression task with the use of DataLoader is
-    astonishingly more fast: to reach a training loss of
-    $\approx 0.450$, the model took only $\approx 70$ steps. I also set
-    `shuffle=True` in order to introduce randomness into the training
-    process, which can help the model generalize better. Also, because
-    the ordering of samples is not important for this task, choosing the
-    `shuffle` option helps the model to not be biased by the order of
-    data. `shuffle` is equal to `True` only for the `train_loader`,
-    since we do not need randomization in the evaluation phase. Also,
-    for efficiency purpose, i set the `batch_size` in the `eval_loader`
-    aas equal to the size of the dataset. Here I attached the resulting
-    plots for the training and evaluation loss
-    [11](#fig:LOSS3){reference-type="ref" reference="fig:LOSS3"}, as
-    well as the estimated and the original polynomial
-    [10](#fig:PLOT4){reference-type="ref" reference="fig:PLOT4"}. As we
-    see the `model3` performs almost as well as `model` ( the one not
-    relying on DataLoader), but with a lot less steps.
+    -   **Line of Code: 288-359** I also tried to perform exercise 5 by
+        iterating on batches. Since it wasn't requested I don't describe
+        this in detail. The code is basically the same except that all
+        the optimization and backpropagation are performed inside the
+        for loop that iterates on data batches, while the set of the
+        model in `train()` and `eval()` mode is done outside. Also, note
+        that at each iteration of the batch loop, datapoints and labels
+        of that batch are saved in the device. I kept the same learning
+        rate and I choose $16$ as number of batches since it was the one
+        that, with this learning rate, gave me the best result in terms
+        of steps taken. Also, for most of the cases, a batch size
+        between $[8;64]$ is suggested. Performing this linear regression
+        task with the use of DataLoader is astonishingly more fast: to
+        reach a training loss of $\approx 0.450$, the model took only
+        $\approx 70$ steps. I also set `shuffle=True` in order to
+        introduce randomness into the training process, which can help
+        the model generalize better. Also, because the ordering of
+        samples is not important for this task, choosing the `shuffle`
+        option helps the model to not be biased by the order of data.
+        `shuffle` is equal to `True` only for the `train_loader`, since
+        we do not need randomization in the evaluation phase. Also, for
+        efficiency purpose, i set the `batch_size` in the `eval_loader`
+        aas equal to the size of the dataset. Here I attached the
+        resulting plots for the training and evaluation loss
+        [11](#fig:LOSS3){reference-type="ref" reference="fig:LOSS3"}, as
+        well as the estimated and the original polynomial
+        [10](#fig:PLOT4){reference-type="ref" reference="fig:PLOT4"}. As
+        we see the `model3` performs almost as well as `model` ( the one
+        not relying on DataLoader), but with a lot less steps.
 
-    # Questions {#questions .unnumbered}
-
-    (a) Answer to the first question
-
-    (b) Answer to the second question
+    # Images {#images .unnumbered}
 
     ![Plot of the Polynomial Function on interval
-    $[-3:3]$](images/fig1.jpg){#fig:PLOT1 width="75%"}
+    $[-3:3]$](images/images/fig1.jpg){#fig:PLOT1 width="75%"}
 
     ![Plot of generated training data and polynomial
-    function](images/Visual1.png){#fig:PLOT2Training width="75%"}
+    function](images/images/Visual1.png){#fig:PLOT2Training width="75%"}
 
     ![Plot of generated evaluation data and polynomial
-    function](images/visual2.png){#fig:PLOT2Eval width="75%"}
+    function](images/images/visual2.png){#fig:PLOT2Eval width="75%"}
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500`](images/losses1.png){#fig:LOSS1 width="75%"}
+    `num_samples=500`](images/images/losses1.png){#fig:LOSS1
+    width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=500` and evaluation
     dataset with `num_samples=500`
-    ](images/originalEstimated1.png){#fig:POL2 width="75%"}
+    ](images/images/originalEstimated1.png){#fig:POL2 width="75%"}
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=500` and evaluation
-    dataset with `num_samples=500`](images/param1.png){#fig:PARAM1
+    dataset with
+    `num_samples=500`](images/images/param1.png){#fig:PARAM1
     width="75%"}
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=10` and evaluation dataset with
-    `num_samples=500`](images/Loss2.png){#fig:LOSS2 width="75%"}
+    `num_samples=500`](images/images/Loss2.png){#fig:LOSS2 width="75%"}
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=10` and evaluation
-    dataset with `num_samples=500`](images/bouncing.png){#fig:PARAM2
+    dataset with
+    `num_samples=500`](images/images/bouncing.png){#fig:PARAM2
     width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=10` and evaluation
-    dataset with `num_samples=500`](images/PLOT3.png){#fig:PLOT3
+    dataset with `num_samples=500`](images/images/PLOT3.png){#fig:PLOT3
     width="75%"}
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For polynomial regression performed with DataLoader,
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500` ](images/PLOT_final.png){#fig:PLOT4 width="75%"}
+    `num_samples=500` ](images/images/PLOT_final.png){#fig:PLOT4
+    width="75%"}
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=500` and evaluation
     dataset with `num_samples=500`. Perfortmed with
-    DataLoader](images/LOSS_final.png){#fig:LOSS3 width="75%"}
+    DataLoader](images/images/LOSS_final.png){#fig:LOSS3 width="75%"}
