@@ -446,7 +446,7 @@ gradient descent with PyTorch, even if a closed-form solution exists.
         we see the `model3` performs almost as well as `model` ( the one
         not relying on DataLoader), but with a lot less steps.
 
-    # Images {#images .unnumbered}
+    # Images 
 
     ![Plot of the Polynomial Function on interval
     $[-3:3]$](images/fig1.jpg)
