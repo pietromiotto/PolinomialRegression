@@ -3,7 +3,7 @@
 # Polynomial regression 
 
 We are given the following problem, which aims to build and train a Deep
-Learning Model for regressing a polynomial.
+Learning Model for regressing a polynomial. Here you will find the problem formulation, the related qustions, and a detailed report explining the code and the choiches made, by replying to the questions. Additional images and plots are added at the end of the document. To see the code, look t the notebook file in this same repository. I decided to upload the .ipynb so it is easier to run and test out.
 
 ## The Problem 
 
@@ -449,29 +449,27 @@ gradient descent with PyTorch, even if a closed-form solution exists.
     # Images {#images .unnumbered}
 
     ![Plot of the Polynomial Function on interval
-    $[-3:3]$](images/fig1.jpg){#fig:PLOT1 width="75%"}
+    $[-3:3]$](images/fig1.jpg)
 
     ![Plot of generated training data and polynomial
-    function](images/Visual1.png){#fig:PLOT2Training width="75%"}
+    function](images/Visual1.png)
 
     ![Plot of generated evaluation data and polynomial
-    function](images/visual2.png){#fig:PLOT2Eval width="75%"}
+    function](images/visual2.png)
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500`](images/losses1.png){#fig:LOSS1
-    width="75%"}
+    `num_samples=500`](images/losses1.png)
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=500` and evaluation
     dataset with `num_samples=500`
-    ](images/originalEstimated1.png){#fig:POL2 width="75%"}
+    ](images/originalEstimated1.png)
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=500` and evaluation
     dataset with
-    `num_samples=500`](images/param1.png){#fig:PARAM1
-    width="75%"}
+    `num_samples=500`](images/param1.png)
 
     ![Plot of training loss and evaluation loss values at each step for
     training dataset with `num_samples=10` and evaluation dataset with
@@ -480,21 +478,18 @@ gradient descent with PyTorch, even if a closed-form solution exists.
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=10` and evaluation
     dataset with
-    `num_samples=500`](images/bouncing.png){#fig:PARAM2
-    width="75%"}
+    `num_samples=500`](images/bouncing.png)
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For training dataset with `num_samples=10` and evaluation
-    dataset with `num_samples=500`](images/PLOT3.png){#fig:PLOT3
-    width="75%"}
+    dataset with `num_samples=500`](images/PLOT3.png)
 
     ![Plot of original and estimated Polynomial Function on interval
     $[-3:3]$. For polynomial regression performed with DataLoader,
     training dataset with `num_samples=500` and evaluation dataset with
-    `num_samples=500` ](images/PLOT_final.png){#fig:PLOT4
-    width="75%"}
+    `num_samples=500` ](images/PLOT_final.png)
 
     ![Plot of parameters update at each step and original parameter
     value for training dataset with `num_samples=500` and evaluation
     dataset with `num_samples=500`. Perfortmed with
-    DataLoader](images/images/LOSS_final.png){#fig:LOSS3 width="75%"}
+    DataLoader](images/LOSS_final.png)
