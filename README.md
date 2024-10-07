@@ -1,6 +1,6 @@
 
 
-# Polynomial regression 
+# Polynomial regression with Gradient Descent (Pytorch)
 
 We are given the following problem, which aims to build and train a Deep
 Learning Model for regressing a polynomial. Here you will find the problem formulation, the related qustions, and a detailed report explining the code and the choiches made, by replying to the questions. Additional images and plots are added at the end of the document. To see the code, look t the notebook file in this same repository. I decided to upload the .ipynb so it is easier to run and test out.
